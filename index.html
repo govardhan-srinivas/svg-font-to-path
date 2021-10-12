@@ -49,12 +49,14 @@
 
     <script src="svg-text-to-path.js"></script>
     <script>
+      let filename = '';
       function updateCode() {
         document.querySelector("pre").textContent =
           document.querySelector("svg").outerHTML;
       }
       function readFile(event) {
         var fr = new FileReader();
+        filename = event.target.files[0].name;
         fr.onload = function (e) {
           // e.target.result should contain the text
           let temp = e.target.result
@@ -111,7 +113,7 @@
         //set url value to a element's href attribute.
         var downloadLink = document.createElement("a");
         downloadLink.href = url;
-        downloadLink.download = "newesttree.svg";
+        downloadLink.download = filename;
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);
